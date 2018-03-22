@@ -9,14 +9,12 @@ import re
 
 #import web_pdb; web_pdb.set_trace()
  
-
 base_url = sys.argv[0]
 addon_handle = int(sys.argv[1])
 args = urlparse.parse_qs(sys.argv[2][1:])
 
 _addon = xbmcaddon.Addon()
 _icon = _addon.getAddonInfo('icon')
-
 
 def build_url(query):
     return base_url + '?' + urllib.urlencode(query)
