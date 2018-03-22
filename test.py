@@ -36,9 +36,7 @@ for i in linksContainer:
         else: 
             name = line.split('<a href="')[0].replace(':','')
             link = line.split('<a href="')[1].split('"')[0]
-            links.append ( item ( title + ' - ' + name,link , i.img['src'] ) )
-            links.append ( item ( title + ' - ' + name,link , i.img['src'] ) )
-            links.append ( item ( title + ' - ' + name,link , i.img['src'] ) )
+            links.append ( item ( title + ' - ' + name,link , i.img['src'] ) ) 
             print(title)
 
 
