@@ -16,18 +16,14 @@ class item:
         self.videoLink = videoLink
         self.imgLink = imgLink  
 
-class meczreplay:
-    
-    links = []
-
-    def __init__(self):
+class webParser:   
+    def getData(self):
         html = urllib.urlopen('https://meczreplay.blogspot.com/search?max-results=50')
-        soup = BeautifulSoup(html)
-        #letters = soup.find_all('a', href=True)
+        soup = BeautifulSoup(html) 
 
-        linksContainer = soup.find_all('div', attrs={'class' : 'container post-body entry-content'})
-        #lin = soup.find_all('img', attrs = {'alt' : 'Obraz'})
-
+        linksContainer = soup.find_all('div', attrs={'class' : 'container post-body entry-content'}) 
+        
+        self.links = []
         for i in linksContainer:
             dataContainer = i.find('div', attrs={'class' : 'snippet-item r-snippetized'})
             data = str(dataContainer).replace('<div class=\"snippet-item r-snippetized\">','').replace('</div>','').replace('\n','')
@@ -41,3 +37,5 @@ class meczreplay:
                     name = line.split('<a href="')[0].replace(':','')
                     link = line.split('<a href="')[1].split('"')[0]
                     self.links.append(item(title + ' - ' + name ,link ,i.img['src']))
+	        
+        return self.links
