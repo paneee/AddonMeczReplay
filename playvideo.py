@@ -5,10 +5,9 @@ import resolveurl as urlresolver
 from bs4 import BeautifulSoup
 import re 
 
-import resources.lib.mr_parser
 import resources.lib.meczreplay
 
-import web_pdb; web_pdb.set_trace()
+#import web_pdb; web_pdb.set_trace()
  
 base_url = sys.argv[0]
 addon_handle = int(sys.argv[1])
@@ -52,12 +51,10 @@ mode = args.get('mode', None)
 
 if mode is None:
     
-    data = resources.lib.mr_parser.meczreplay()
-    
     parser = resources.lib.meczreplay.webParser()
-    data2 = parser.getData()
+    data = parser.getData()
 
-    for i in data2: 
+    for i in data: 
         video_play_url = i.videoLink
         url = build_url({'mode' :'play', 'playlink' : video_play_url})
         li = xbmcgui.ListItem(i.name, iconImage=i.imgLink)
