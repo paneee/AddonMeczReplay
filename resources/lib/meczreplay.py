@@ -1,5 +1,6 @@
 import urlparse
 import sys,urllib
+#import sys,urllib.request
 import xbmc, xbmcgui, xbmcaddon, xbmcplugin
 import resolveurl as urlresolver
 from bs4 import BeautifulSoup
@@ -18,8 +19,10 @@ class item:
 
 class webParser:   
     def getData(self):
+        #html = urllib.request.urlopen('https://meczreplay.blogspot.com/search?max-results=50')
         html = urllib.urlopen('https://meczreplay.blogspot.com/search?max-results=50')
         soup = BeautifulSoup(html) 
+        #soup = BeautifulSoup(html,"lxml") 
 
         linksContainer = soup.find_all('div', attrs={'class' : 'container post-body entry-content'}) 
         
@@ -33,9 +36,11 @@ class webParser:
                 indexHttp = line.find('http')
                 if (indexHttp == -1):
                     title = line.replace('</strong>','').replace('<strong>','')
-                else: 
-                    name = line.split('<a href="')[0].replace(':','')
-                    link = line.split('<a href="')[1].split('"')[0]
-                    self.links.append(item(title + ' - ' + name ,link ,i.img['src']))
-	        
+                else:
+                    try:
+                        name = line.split('<a href="')[0].replace(':','')
+                        link = line.split('<a href="')[1].split('"')[0]
+                        self.links.append(item(title + ' - ' + name ,link ,i.img['src']))
+                    except:
+                        pass 
         return self.links
