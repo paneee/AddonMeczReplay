@@ -1,9 +1,10 @@
-import urlparse
+#import urlparse
 import sys,urllib
 #import sys,urllib.request
-import xbmc, xbmcgui, xbmcaddon, xbmcplugin
-import resolveurl as urlresolver
+#import xbmc, xbmcgui, xbmcaddon, xbmcplugin
+#import resolveurl as urlresolver
 from bs4 import BeautifulSoup
+#import BeautifulSoup
 import re 
 
 
